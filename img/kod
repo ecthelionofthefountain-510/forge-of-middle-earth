@@ -1,0 +1,69 @@
+/*
+
+<div class="product">
+  <img src="product-image.jpg" alt="Produkt" class="product-image">
+  <button class="add-to-cart-btn">Lägg i varukorgen</button>
+</div>
+
+<div class="cart">
+  <img src="cart-icon.png" alt="Varukorg" class="cart-icon">
+</div>
+
+.product {
+  position: relative;
+  display: inline-block;
+}
+
+.cart {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.product-image {
+  width: 150px;
+  height: auto;
+}
+
+.add-to-cart-btn {
+  display: block;
+  margin-top: 10px;
+}
+
+.cart-icon {
+  width: 50px;
+  height: auto;
+}
+
+const addToCartBtn = document.querySelector('.add-to-cart-btn');
+const cart = document.querySelector('.cart-icon');
+
+addToCartBtn.addEventListener('click', function () {
+  // Hämta produktbildens position
+  const productImage = document.querySelector('.product-image');
+  const productRect = productImage.getBoundingClientRect();
+  const cartRect = cart.getBoundingClientRect();
+
+  // Skapa en klon av produktbilden
+  const flyingImage = productImage.cloneNode(true);
+  document.body.appendChild(flyingImage);
+
+  // Placera den klonade bilden vid originalbildens position
+  flyingImage.style.position = 'fixed';
+  flyingImage.style.left = `${productRect.left}px`;
+  flyingImage.style.top = `${productRect.top}px`;
+  flyingImage.style.width = `${productRect.width}px`;
+  flyingImage.style.transition = 'all 1s ease-in-out';
+
+  // Vänta en liten stund och animera den mot varukorgen
+  setTimeout(() => {
+    flyingImage.style.left = `${cartRect.left}px`;
+    flyingImage.style.top = `${cartRect.top}px`;
+    flyingImage.style.width = '30px'; // Valfritt: krymp bilden under animationen
+  }, 100);
+
+  // Ta bort bilden efter animationen
+  setTimeout(() => {
+    flyingImage.remove();
+  }, 1000);
+});

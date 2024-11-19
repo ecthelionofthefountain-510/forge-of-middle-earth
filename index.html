@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forge of Middle-Earth</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="img/fav-icon.png" type="image/x-icon">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script> 
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+
+    <div class="header-title">
+      <h1>Aiya i Tánassë Aulëo</h1>
+    </div>
+    <div class="search-form">
+      <form>
+        <input type="text" placeholder=" search item 🔥" id="search-input" oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+      </form>
+      <div class="aule-image">
+         <img src="img/Aulë.jpg" alt="Aulë" />
+    </div>
+    </div>
+  
+
+      <nav>
+        <ul>
+        <li><a href="javascript:void(0)" class="menu-link nav-item">Swords</a>
+          <ul class="dropdown">
+            <li><a href="#" onclick="showImage('ai-img/anglachel.jpg')">Anglachel</a></li>
+            <li><a href="#" onclick="showImage('ai-img/glamdring.jpg')">Glamdring</a></li>
+            <li><a href="#" onclick="showImage('ai-img/herugrim.jpg')">Herugrim</a></li>
+            <li><a href="#" onclick="showImage('ai-img/narsil.jpg')">Narsil</a></li>
+            <li><a href="#" onclick="showImage('ai-img/orcrist.jpg')">Orcrist</a></li>
+            <li><a href="#" onclick="showImage('ai-img/ringil.jpg')">Ringil</a></li>
+            <li><a href="#" onclick="showImage('ai-img/gurthang.jpg')">Gurthang</a></li>
+          </ul>
+        </li>
+        <li><a href="javascript:void(0)" class="menu-link nav-item">Blades/Axes</a>
+          <ul class="dropdown">
+            <li><a href="#" onclick="showImage('aeglos.jpg')">Aeglos</a></li>
+            <li><a href="#" onclick="showImage('angrist.jpg')">Angrist</a></li>
+            <li><a href="#" onclick="showImage('barrow-blades.jpg')">Barrow-blades</a></li>
+            <li><a href="#" onclick="showImage('dains-axe.jpg')">The Red Axe</a></li>
+            <li><a href="#" onclick="showImage('battle-axe.jpg')">Hurins Axe</a></li>
+            <li><a href="#" onclick="showImage('Dramborleg.jpg')">Dramborleg</a></li>
+            <li><a href="#" onclick="showImage('Grond.jpg')">Grond</a></li>
+          </ul>
+        </li>
+        <li><a href="javascript:void(0)" class="menu-link nav-item">Armour</a>
+        <ul class="dropdown">
+          <li><a href="#" onclick="showImage('dwarven-armour.jpg')">Dwarven armour</a></li>
+            <li><a href="#" onclick="showImage('elven-armour.jpg')">Elven armour</a></li>
+            <li><a href="#" onclick="showImage('men-armour.jpg')">Men armour</a></li>
+        </ul>
+      </li>
+      <li><a href="javascript:void(0)" class="menu-link nav-item">Helmets</a>
+          <ul class="dropdown">
+            <li><a href="#" onclick="showImage('elven-helmet.jpg')">Elven helmet</a></li>
+              <li><a href="#" onclick="showImage('dwarven-helmet.jpg')">Dwarven helmet</a></li>
+              <li><a href="#" onclick="showImage('men-helmet.jpg')">Gondorian helmet</a></li>
+              <li><a href="#" onclick="showImage('dragon-helm.jpg')">Special helmet</a></li>
+          </ul>
+        </li>
+        <li><a href="javascript:void(0)" class="menu-link nav-item">Artifacts</a>
+          <ul class="dropdown">
+            <li><a href="#" onclick="showImage('horn-of-gondor.jpg')">Horn of Gondor</a></li>
+            <li><a href="#" onclick="showImage('phial-of-galadriel.jpg')">Phial of Galadriel</a></li>
+            <li><a href="#" onclick="showImage('ring-of-barahir.jpg')">Ring of Barahir</a></li>
+            <li><a href="#" onclick="showImage('the-one-ring.jpg')">The one ring</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  
+  <div class="intro-text fade-in">
+    <p><span class="drop-cap">M</span>ae govannen, traveler! You entered the renowned Smithy of <strong>Aulë</strong> , where the finest armors, weapons, and artifacts are forged. Crafted by master smiths, each piece holds power and history. Browse our selection and choose wisely, for each item carries the strength and spirit of its origin.</p>
+  </div>
+  
+  <div class="featured-items fade-in">
+    <h2>Artifacts of Power</h2>
+    <div class="artifact-list">
+      <div class="artifact">
+        <img src="img/the-one-ring.jpg" alt="The One Ring">
+        <p>The One Ring</p>
+        <button onclick="showImage('the-one-ring.jpg')">View</button>
+      </div>
+      <div class="artifact">
+        <img src="img/ring-of-barahir.jpg" alt="Ring of Barahir">
+        <p>Ring of Barahir</p>
+        <button onclick="showImage('ring-of-barahir.jpg')">View</button>
+      </div>
+      <!-- Add more artifacts as needed -->
+    </div>
+  </div>
+  
+
+  
+
+  <div id="swordModal" class="modal">
+    <div class="modal-content">
+      
+      <span class="close">&times;</span>
+      
+      <!-- Flex container for image and item details -->
+      <div class="modal-header">
+        <img id="modal-sword-image" src="" alt="Item Image" style="width: 300px;">
+        
+        <!-- Item details section for name and price -->
+        <div class="item-details">
+          <p id="modal-sword-description">The One Ring: The One Ring</p>
+          <p id="modal-price" class="price-display">Price: 1200000 KR</p>
+          
+          <!-- Add-to-cart button placed directly under the price -->
+          <button id="add-to-cart-btn" class="add-to-cart" onclick="addToCart()">Add to cart</button>
+        </div>
+      </div>
+  
+      <!-- Customization options in a flex container for alignment -->
+      <div class="customization-options">
+        <div class="option-group">
+          <label for="inscription">Inscription:</label>
+          <select id="inscription" class="inscription-dropdown" onchange="updatePreview()">
+            <option value="None">None</option>
+            <option value="Elvish">Tengwar (Elvish Script)</option>
+            <option value="Dwarvish">Angerthas (Dwarvish Runes)</option>
+            <option value="Ancient">Westron</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label for="material">Material:</label>
+          <select id="material" class="material-dropdown" onchange="updateMaterialPrice()">
+            <option value="Standard">Standard (Steel)</option>
+            <option value="Mithril">Mithril (+500 kr)</option>
+            <option value="Silmarili">Silmarili (+2000 kr)</option>
+          </select>
+        </div>
+      </div>
+      
+      
+
+      <div id="error-message" class="message-box" style="display: none;">
+        <p>Do not follow the folly of Sauron; choose wisely! Elvish inscriptions are not suitable for this item.</p>
+        <button onclick="closeErrorMessage()">So be it!</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="cart-container" id="cart-container">
+    <a href="#" class="cart-link"">
+        <img id="cart-icon" src="img/cart/cart.jpg" alt="Cart Icon">
+        <span class="cart-count" id="cart-count">0</span>
+    </a>
+    <h2 class="cart-text">Cart</h2>
+    <ul id="cart-items">
+        <!-- Dynamiska varukorgsobjekt här -->
+    </ul>
+    <p id="discount-amount" style="display: none; color: #ffd700; font-weight: bold;">Discount: </p>
+    <p id="total-price-cart">Total price: </p>
+    <button class="checkout-button">Checkout</button>
+</div>
+
+ <div id="discount-notification" class="discount-notification"></div>
+  <audio id="background-sound" loop>
+    <source src="sounds/Blacksmith Ambience _ Medieval Forge Sounds 🏹 [ ezmp3.cc ].mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+  <button id="sound-toggle" class="sound-toggle">🔊</button> 
+  <div class="discount-info-container">
+    <h3>Available Discounts</h3>
+    <ul>
+      <li><strong>Elven Warrior's Blessing</strong> - Buy Elven Sword, Elven Armour, and Elven Helmet to get a 15% discount 🌿</li>
+      <li><strong>Durin, son of Durin</strong> - Buy Dwarven Axe, Dwarven Armour, and Dwarven Helmet to get a 15% discount 🔨</li>
+      <li><strong>Turin Turambar</strong> - Buy Gurthang and Special Helmet to get a 99% discount!</li>
+      <li><strong>Heir of Numenor</strong> - Buy Narsil and The Ring of Barahir to get a 50% discount</li>
+      <li><strong>Aurë Entuluva</strong> - Buy Hurins Axe to get a 20% discount</li>
+      <li><strong>Morgoth's Apprentice</strong> - Buy Grond and The One Ring for a secret experience</li>
+    </ul>
+  </div>
+
+
+<footer>
+    <div class="footer-bottom">
+    &copy; 2024 Forge of Middle-Earth | All rights reserved
+  </div>
+</footer>
+
+<audio id="elven-sound">
+  <source src="sounds/legolas.mp3" type="audio/mp3">
+</audio>
+<audio id="dwarvish-sound">
+  <source src="sounds/gimli.mp3" type="audio/mp3">
+</audio>
+<audio id="mannish-sound">
+  <source src="sounds/hurin.mp3" type="audio/mp3">
+</audio>
+<!--<audio id="special-sound">
+  <source src="sounds/special-discount.mp3" type="audio/mp3">
+</audio>  -->
+<audio id="numenorean-sound">
+  <source src="sounds/numenor.mp3" type="audio/mp3">
+</audio>
+<audio id="dark-sound">
+  <source src="sounds/black-speech.mp3" type="audio/mp3">
+</audio>
+</body>
+</html>

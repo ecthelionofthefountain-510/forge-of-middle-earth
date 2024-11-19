@@ -1,0 +1,1166 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background-image: url(img/background-ai.jpg);
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  justify-content: center;
+  align-items: center;
+  overscroll-behavior: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-size: cover;
+}
+
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: 1000px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.header-title {
+  text-align: center;
+  margin-top: 40px; /* Skapar lite utrymme från toppen för att undvika överlappning med sökformuläret */
+}
+
+.aule-image {
+  position: absolute;
+  top: 10px; /* Justera placeringen som du vill */
+  left: -320px;
+  margin-left: 0; /* Behåll den önskade positioneringen */
+  z-index: 0;
+  opacity: 0.9;
+  width: 20vw;
+  max-width: 250px;
+  height: auto;
+}
+
+.aule-image img {
+  max-width: 250px; /* Justera storlek efter behov */
+  height: 800px;
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+
+h1 {
+  margin: 70px;
+  padding: 0;
+  top: 0;
+  font-family: 'Ringbearer';
+  text-align: center;
+  font-size: 4rem;
+  position: relative;
+  z-index: 10;
+  color: #000000e3;
+  text-shadow: 0 0 10px #ffae00, 0 0 20px #ff7500, 0 0 30px #ff4500;
+  animation: glow-pulse 2s infinite alternate;
+  margin-top: 0;
+  width: 800px;
+  padding-bottom: 40px;;
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 50px;
+    margin: 50px 0 20px 0;
+  }
+
+  .search-form {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    display: flex;
+    flex-direction: column; /* Placera elementen i en kolumn */
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Bakgrund för bättre läsbarhet */
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
+
+
+
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 65px 0; /* Skapar lite utrymme runt sökfältet */
+  margin-top: -70px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.search-form input {
+  padding: 5px;
+  font-family: 'Aniron', serif;
+  border: 1px solid #ffae00;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  background-color: transparent;
+  color: rgb(255, 255, 255);
+}
+
+.search-form button {
+  padding: 5px 10px;
+  font-family: 'Aniron', serif;
+  border-left: none;
+  color: #000000;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  background-color: transparent;
+}
+
+.suggestions {
+  position: absolute;
+  top: 70%; /* Flyttar ned förslagsrutan under sökfältet */
+  left: 0;
+  width: 40%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  border: 1px solid #ffae00;
+  display: none; /* Dölj förslagslistan tills användaren börjar skriva */
+  font-family: 'Aniron', serif;
+  color: #ffd700;
+  z-index: 1;
+  margin-top: 5px; /* Lägger till lite utrymme under inputfältet */
+  margin-left: 200px;
+}
+
+.suggestions div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestions div:hover {
+  background-color: rgba(255, 215, 0, 0.3);
+  color: #fff;
+}
+
+.suggestions div.highlight {
+  background-color: rgba(255, 215, 0, 0.3);
+  color: #fff;
+}
+
+.smoke {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(200,200,200,0.6), rgba(150,150,150,0.3), transparent);
+  border-radius: 30%;
+  opacity: 0;
+  pointer-events: none;
+  animation: smokeEffect 3s ease-out forwards;
+}
+
+@keyframes smokeEffect {
+  0% {
+    opacity: 0.1;
+    transform: translateY(0) scale(0.8) rotate(0deg);
+  }
+  25% {
+    opacity: 0.4;
+    transform: translateY(-20px) scale(1) rotate(10deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-40px) scale(1.1) rotate(-10deg);
+  }
+  75% {
+    opacity: 0.2;
+    transform: translateY(-60px) scale(1.2) rotate(5deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.3) rotate(-5deg);
+  }
+}
+
+
+
+
+/* Navigation Styling */
+nav {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  width: 700px;
+  border: solid black;
+  margin-top: -5%;
+  font-size: 13px;
+}
+
+nav ul {
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+  font-family: 'Aniron';
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block; 
+  padding-bottom: 0;
+  position: relative; 
+  padding: 0 10px;
+}
+
+nav ul li:not(:last-child) {
+  border-right: 2px solid #000000; /* Gold divider line */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000000ac; 
+  font-weight: bold;
+  padding: 4px 13px; 
+  display: block; 
+}
+
+nav.blur {
+  filter: blur(5px); /* Justera blurrigheten efter behov */
+  transition: filter 0.3s ease; /* För mjuk övergång */
+}
+
+/* Responsiv navigationsmeny för skärmar mindre än 768px */
+@media screen and (max-width: 768px) {
+  nav {
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+    border-right: none;
+    border-bottom: 1px solid #000;
+  }
+
+  nav ul li:last-child {
+    border-bottom: none;
+  }
+
+  .search-form {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+nav ul li ul.dropdown {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: rgba(20, 20, 20, 0.9);
+  list-style-type: none;
+  top: 100%;
+  left: 0;
+  margin-top: 1px;
+  padding: 5px 0;
+  text-align: left;
+  width: 180px;
+  font-family: 'Aniron';
+  border-radius: 8px;
+  border: 1px solid #ffd700;
+  font-size: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  pointer-events: auto;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  animation: fadeIn 0.3s ease-out;
+}
+
+nav ul li ul.dropdown li {
+  display: block;
+  pointer-events: auto;
+}
+
+nav ul li ul.dropdown li a {
+  padding: 10px 20px;
+  color: #ffd700; /* Gold text */
+  font-weight: normal;
+  text-align: left;
+  background-color: transparent; /* Remove background for cleaner look */
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+nav ul li ul.dropdown li a:hover {
+  background-color: rgba(255, 215, 0, 0.3); /* Goldish hover effect */
+  color: #fff;
+  display: block;
+}
+
+/* Ensure dropdown stays visible on hover */
+nav ul li:hover ul.dropdown {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+nav ul li ul.dropdown:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 215, 0, 0.5); /* Svagt glöd runt texten */
+  opacity: 0;
+  border-radius: 5px;
+  transition: opacity 0.4s ease;
+  filter: blur(5px); /* Skapar glödande effekt */
+  z-index: -1;
+}
+
+.dropdown li a:hover {
+  color: #ffffff; /* Ljusare färg på text vid hover */
+}
+
+.dropdown li a:hover::before {
+  opacity: 1; /* Gör glöden synlig */
+  animation: glow-pulse 1.5s infinite alternate;
+}
+
+img, #sword-image {
+  width: 100%;
+  max-width: 300px;;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  border: 2px solid #ffd700;
+}
+
+#image-container {
+  text-align: center;
+  margin-top: 20px;
+  z-index: 3000;
+}
+
+#image-box {
+  max-width: 50%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid #ffd700;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#sword-description {
+  margin-top: 15px;
+  color: #ffd700;
+  font-family: 'Aniron';
+  font-size: 1.2em;
+}
+
+#total-price {
+  font-size: 1.5em;
+}
+
+.cart-text {
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-top: -50px;
+  font-size: 3rem;
+
+}
+
+.cart-container {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Starta utanför skärmen */
+  width: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 20px;
+  border-left: 1px solid #ffd700;
+  box-shadow: -5px 0 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  z-index: 9999;
+}
+
+.cart-container.open {
+  right: 0;
+}
+
+.pulse-animation {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2.0s ease-in-out;
+}
+
+
+.cart-link {
+  position: relative;
+  top: -10px; /* Justera vertikal position efter behov */
+  left: -50px; /* Placera ikonen till vänster om varukorgen */
+  display: inline-block;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  animation: pulse 0.5s ease-in-out;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cart-link img {
+  width: 40px; /* Justera storlek efter behov */
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7)); /* Mjukare rund glow */
+}
+
+.cart-link.added {
+  animation: none; /* Stoppa pulsanimationen */
+}
+
+.cart-link.added img {
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1)); /* Starkare glow vid lägg till */
+  transition: filter 0.3s ease;
+}
+
+#cart-icon {
+  width: 50px;
+  height: 50px;
+  border: none;
+}
+
+.cart-count {
+  position: absolute;
+  top: 1px; /* Justera denna för att finjustera den vertikala positionen */
+  right: -15px; /* Justera denna för att finjustera den horisontella positionen */
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px; /* Bredd på varukorgens sidopanel */
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.cart-sidebar.show {
+  right: 0;
+}
+
+
+
+.add-to-cart {
+  position: absolute;
+  bottom: 20px; /* Distance from the bottom of the modal */
+  right: 20px; /* Distance from the right side of the modal */
+  padding: 10px 20px;
+  background-color: #000;
+  color: white;
+  font-family: 'Aniron';
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  border: white 1px solid;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #ff7518;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+#cart-items::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Avstånd mellan bild och text */
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #ffd700;
+}
+
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Får texten att ta upp tillgängligt utrymme */
+}
+
+.cart-item-name {
+  font-weight: bold;
+  color: #ffd700;
+  margin: 0;
+  font-family: 'Ringbearer';
+}
+
+.cart-item-price {
+  font-size: 0.9em;
+  color: #ffffff;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity-control button {
+  background-color: #ffffff;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 0.9em;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1; /* Justera för att centrera tecknet */
+  text-align: center;
+  padding: 0;
+}
+
+.quantity-control span {
+  font-size: 0.9em;
+  color: #ffd700;
+  margin-top: 10px;
+}
+
+#total-price-cart {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #ffd700;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.cart-dropdown.show {
+  display: block !important;
+}
+
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background-color: #ff7518;
+  border: none;
+  color: black;
+  font-family: 'Aniron', serif;
+  font-size: 1em;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #ffd700;
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  .cart-container {
+    top: 10px;
+    right: 10px;
+  }
+
+  .cart-count {
+    top: -25px;
+  }
+
+  .sound-toggle {
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+}
+
+
+/* Discount Notification Styles */
+.discount-notification {
+  position: fixed;
+  top: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  color: #ffd700; /* Gold text */
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-family: 'Aniron', serif;
+  font-size: 1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0; /* Hidden by default */
+  transform: translateY(-20px); /* Position above initial location */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 99;
+
+}
+
+.discount-notification.show {
+  opacity: 1;
+  transform: translateY(0); /* Slide down into view */
+}
+
+#discount-amount {
+  font-size: 1.1em;
+  color: #ff7518; /* Anpassa färgen för rabatttexten */
+  margin-bottom: 5px;
+  text-align: right;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  text-shadow: rgb(0, 0, 0) 0 0 10px;
+  color: white;
+}
+
+.modal-content {
+  position: relative; /* Makes button position relative to the modal */
+  padding: 20px 30px;
+  max-width: 700px;
+  width: 90%;
+  border-radius: 10px;
+  background-image: url(img/background.jpg);
+  font-family: 'Ringbearer';
+  color: #ffffff;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal-header img {
+  width: 100%; /* Adjust width to match the container */
+  max-width: 300px; /* Set the max width */
+  height: 300px; /* Fixed height */
+  object-fit: contain; /* Ensures the whole image fits within the frame */
+  border-radius: 10px;
+  border: 2px solid #ffd700;
+  background-color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .item-details {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .modal-header img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .customization-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .customization-options .option-group {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .inscription-dropdown,
+  .material-dropdown {
+    width: 80%;
+  }
+}
+
+
+.item-details {
+  color: #ffffff;
+  font-family: 'Ringbearer', serif;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 380px;
+  margin-bottom: 20px;
+}
+
+.item-details #modal-sword-description {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* Container for price and add-to-cart button */
+.price-cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+  border-top: 1px solid #ffd700;
+  margin-top: 10px;
+}
+
+.price-display {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #FFD700;
+}
+
+.inscription-dropdown {
+  width: 50%;
+  max-width: 50%; /* Ensures dropdowns fit within modal */
+  padding: 3px;
+  font-family: 'Aniron', serif;
+  font-size: 13px;
+  color: #ffd700;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffd700;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.material-dropdown {
+  width: 50%;
+  max-width: 50%; /* Ensures dropdowns fit within modal */
+  padding: 3px;
+  font-family: 'Aniron', serif;
+  font-size: 13px;
+  color: #ffd700;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffd700;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  margin-left: 2.5%;
+}
+
+
+
+.inscription-dropdown option, .material-dropdown option {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+  font-family: 'Aniron', serif;
+  padding: 10px;
+}
+
+.material-dropdown::after {
+  content: '▼';
+  font-size: 0.8em;
+  color: #ffd700;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.material-dropdown option {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+  font-family: 'Aniron', serif;
+  padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .artifact-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .artifact {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  img, #sword-image {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Customization and Additional Styles */
+.customization-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customization-options label {
+  color: #ffffff;
+  font-family: 'Aniron', serif;
+  font-size: 1em;
+  text-shadow: none;
+}
+
+.message-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #ff0000;
+  padding: 20px;
+  border: 2px solid #ffae00;
+  border-radius: 10px;
+  font-family: 'Aniron', serif;
+  text-align: center;
+  z-index: 1000;
+}
+
+.intro-text {
+  font-family: 'Ringbearer', serif;
+  color: #ffd700;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 50px auto;
+  max-width: 700px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ffd700;
+}
+
+.intro-text.blur,
+.featured-items.blur {
+  filter: blur(5px);
+  opacity: 0.5;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .intro-text,
+  .featured-items {
+    width: 90%;
+    margin: 20px auto;
+    font-size: 1em;
+  }
+
+  .intro-text p,
+  .artifact p {
+    font-size: 1em;
+  }
+
+  button {
+    font-size: 0.9em;
+    padding: 5px 10px;
+  }
+
+  .artifact button {
+    font-size: 0.9em;
+    padding: 5px 10px;
+  }
+}
+
+
+.drop-cap {
+  float: left;
+  font-size: 3em; /* Adjust the size as needed */
+  line-height: 0.8; /* Adjust to vertically center the letter */
+  padding-right: 5px; /* Space between the drop cap and the following text */
+  font-family: 'Ringbearer', serif; /* Optional: Use a special font */
+  color: #ffffffc3; /* Optional: Change color */
+}
+
+.fade-in {
+  opacity: 0; /* Elementet är dolt från början */
+  transform: translateY(20px); /* Förflyttat en bit nedåt */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Mjuk animation */
+}
+
+.fade-in.visible {
+  opacity: 1; /* Synlig */
+  transform: translateY(0); /* Tillbaka till ursprungsläge */
+}
+
+
+.featured-items {
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Aniron', serif;
+  margin-top: -10px;
+  text-shadow: #f90 0 0 10px;
+}
+
+h2 {
+  font-family: 'Ringbearer';
+  color: #000;
+  font-size: 2rem;
+}
+
+.artifact-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.artifact {
+  width: 150px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.artifact img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.artifact p {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.artifact button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: rgb(255, 153, 0);
+  border: none;
+  color: white;
+  font-family: 'Aniron';
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.artifact button:hover {
+  background-color: #ff7518;
+}
+
+strong {
+  color:rgb(0, 0, 0);
+  font-size: 28px;
+  text-shadow: rgb(255, 0, 0) 0 0 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: rgb(255, 153, 0);
+  border: none;
+  color: white;
+  font-family: 'Aniron';
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sound-toggle {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: black;
+  color: white;
+  padding: 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+  margin-right: 40px;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #111;
+  color: #d3d3d3;
+  font-family: 'Aniron', serif;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.footer-bottom {
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 10px 0;
+  }
+
+  .footer-bottom {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 40px;
+    margin: 30px 0 10px 0;
+  }
+
+  .add-to-cart,
+  .checkout-button {
+    font-size: 0.8em;
+    padding: 5px;
+  }
+
+  .modal-content {
+    padding: 10px;
+  }
+
+  .artifact {
+    width: 100%;
+  }
+
+  .artifact img {
+    height: auto;
+  }
+
+  .intro-text,
+  .featured-items {
+    font-size: 0.9em;
+  }
+}
+
+.blur {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
+
+.discount-info-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 700px;
+  margin: 20px auto;
+  border: 1px solid #ffd700;
+  font-family: 'Aniron', serif;
+}
+
+.discount-info-container h3 {
+  font-family: 'Ringbearer', serif;
+  color: #ff7518;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.discount-info-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.discount-info-container li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.discount-info-container li::before {
+  content: "• ";
+  color: #ff7518; /* Adjust for a visual accent */
+}
