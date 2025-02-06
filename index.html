@@ -184,11 +184,13 @@
   </div>
 
 
-<footer>
-    <div class="footer-bottom">
-    &copy; 2024 Forge of Middle-Earth | All rights reserved
-  </div>
-</footer>
+  <footer>
+    <div class="footer-bottom">© 2024 Forge of Middle-Earth | All rights reserved</div>
+    <script>
+      document.querySelector('.footer-bottom').innerHTML = 
+        `© ${new Date().getFullYear()} Forge of Middle-Earth | All rights reserved`;
+    </script>
+  </footer>
 
 <audio id="elven-sound">
   <source src="sounds/legolas.mp3" type="audio/mp3">
