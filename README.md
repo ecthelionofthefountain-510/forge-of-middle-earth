@@ -48,7 +48,7 @@ An immersive web-based smithy shop inspired by J.R.R. Tolkien's Middle-earth. Br
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/forge-of-middle-earth.git
+   git clone https://github.com/ecthelionofthefountain-510/forge-of-middle-earth.git
    cd forge-of-middle-earth
    ```
 
